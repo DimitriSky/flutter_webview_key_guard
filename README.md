@@ -1,4 +1,4 @@
-# WebView Key Guard
+# Flutter WebView Key Guard
 
 An optional Flutter plugin that prevents keyboard events from being
 redispatched repeatedly to an embedded macOS WebView. It does not patch
