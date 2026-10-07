@@ -2,7 +2,7 @@
 .build/
 .swiftpm/
 build/
-pubspec.lock
+/pubspec.lock
 
 # Local environment and credentials must not be published.
 .DS_Store
@@ -19,3 +19,5 @@ pubspec_overrides.yaml
 *.mobileprovision
 id_rsa
 id_ed25519
+
+.flutter-plugins-dependencies

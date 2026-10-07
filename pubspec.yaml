@@ -1,6 +1,7 @@
 name: webview_key_guard
 description: Optional macOS WebView keyboard redispatch protection for Flutter hosts.
 version: 0.1.0
+repository: https://github.com/DimitriSky/flutter_webview_key_guard
 publish_to: none
 
 environment:

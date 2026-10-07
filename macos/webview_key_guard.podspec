@@ -3,8 +3,7 @@ Pod::Spec.new do |s|
   s.version          = '0.1.0'
   s.summary          = 'Optional macOS WebView keyboard redispatch protection.'
   s.description      = 'B3 command-boundary and focused Flutter key routing with a persistent off switch.'
-  # Replace this placeholder with the public repository URL before distribution.
-  s.homepage         = 'https://example.invalid/webview_key_guard'
+  s.homepage         = 'https://github.com/DimitriSky/flutter_webview_key_guard'
   s.license          = { :type => 'Proprietary' }
   s.author           = 'WebView Key Guard contributors'
   s.source           = { :path => '.' }

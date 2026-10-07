@@ -24,25 +24,20 @@ an application's server, navigation, logging, or settings implementation.
 
 ## Installation
 
-For local development, place the application and package side by side:
-
-```text
-workspace/
-  sample_app/
-  webview_key_guard/
-```
-
-In the application's `pubspec.yaml`:
+For a consuming application's `pubspec.yaml`, use the repository URL and
+pin an immutable commit:
 
 ```yaml
 dependencies:
   webview_key_guard:
-    path: ../webview_key_guard
+    git:
+      url: https://github.com/DimitriSky/flutter_webview_key_guard.git
+      ref: 07cf45b4f041655802ab4d0230abe06be8e28153
 ```
 
-Then run `flutter pub get` from the application directory. For a Git
-dependency, use the repository URL and pin a commit in the application's
-dependency declaration. Publishing to pub.dev is not required.
+Then run `flutter pub get` from the application directory. The snippet pins
+the existing published package revision. The example in this checkout uses
+`path: ..` instead. Publishing to pub.dev is not required.
 
 ### Native Integration
 
@@ -87,6 +82,23 @@ On unsupported platforms, the API returns `false` without a native call.
 
 ## Testing
 
+The standalone [macOS comparison app](example/README.md) lives in `example/`.
+It uses `path: ..` to test the source in this checkout, with historical
+controls, a loopback probe, and [saved evidence](example/evidence/LAB-RESULTS.md).
+Its earlier lab history was not imported. Existing evidence retains its
+original test scope; it does not establish a pass on a new build.
+
+Use Flutter 3.47.5 on your PATH for the example's existing toolchain:
+
+```sh
+cd example
+flutter pub get
+flutter analyze
+flutter test
+node --test scripts/*_test.mjs
+flutter run -d macos
+```
+
 From the package root:
 
 ```sh
@@ -129,8 +141,8 @@ There is no need to delete the package repository.
 
 ## Publishing Metadata
 
-The podspec's `homepage` is currently an explicitly marked placeholder:
-replace it with the actual public repository URL before distribution.
+The repository and podspec homepage point to
+[flutter_webview_key_guard](https://github.com/DimitriSky/flutter_webview_key_guard).
 The current license type in the podspec is `Proprietary`. Removing personal
 information does not change the licensing terms.
 
