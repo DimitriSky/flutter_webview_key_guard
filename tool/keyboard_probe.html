@@ -14,6 +14,7 @@
 </style>
 <h1>WebView key guard probe</h1>
 <output id="counter">0 events / 0 duplicates / 0 repeats</output>
+<button id="reset" type="button">Reset counters</button>
 <label for="prompt">Prompt</label>
 <textarea id="prompt" autofocus></textarea>
 <label for="input">Input</label>
@@ -22,10 +23,11 @@
 <div id="editor" contenteditable="true">Editable text</div>
 <pre id="recent"></pre>
 <script>
-  const state = {
+  const freshState = () => ({
     run: String(Date.now()), keydowns: 0, keyups: 0, duplicates: 0, repeats: 0,
     stopped: false, combinations: {}, recent: [],
-  };
+  });
+  let state = freshState();
   const seen = new Set();
   let dirty = true, sending = false;
   document.addEventListener('keydown', event => {
@@ -47,6 +49,14 @@
     dirty = true;
   }, true);
   document.addEventListener('keyup', () => { state.keyups++; dirty = true; }, true);
+  // Starts a new run with zero counters (also clears a safety stop).
+  document.getElementById('reset').addEventListener('click', event => {
+    state = freshState();
+    seen.clear();
+    dirty = true;
+    // Keep keyboard focus off the button, so Space/Enter in the next test don't press it.
+    event.currentTarget.blur();
+  });
   setInterval(async () => {
     if (!dirty || sending) return;
     dirty = false;
